@@ -6,7 +6,7 @@ import os
 import sys
 import logging
 import argparse
-import cPickle
+import pickle
 import numpy as np
 import utils as utl
 import pandas as pd
@@ -97,7 +97,7 @@ def main(args):
         # test set is given, use give test set instead
         test_data = sio.loadmat(args.test_path)
 
-    print 'input configs are:', configs
+    print ('input configs are:', configs)
 
     if args.mode == 'cloud':
         # complete cloud fraction prediction using NREL data
@@ -110,8 +110,8 @@ def main(args):
         wrf = WRF_Irradiance_Forecaster(data, configs, args.fmt, args.scale, args.outpath)
         wrf.fit('surface_irradiance_obs')
         rmse = wrf.get_test_score()
+        print('RMSE is %.2f' % rmse)
 
-    print 'RMSE is %.2f' % rmse
 
 if __name__ == '__main__':
 
@@ -123,6 +123,6 @@ if __name__ == '__main__':
     np.set_printoptions(precision=4)
     # receive input arguments
     args = arg_parser()
-    print 'input arguments are: ', args
+    print ('input arguments are: ', args)
     # exec main func
     main(args)

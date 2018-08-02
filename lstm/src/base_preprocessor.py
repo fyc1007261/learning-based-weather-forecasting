@@ -152,7 +152,7 @@ class NREL_Preprocessor(Base_Preprocessor):
             return (self.data, self.dates, self.ind_mins, self.ind_maxes)
         else:
             logging.error('Invalid output format!')
-            print 'Output format is invalid!'
+            print ('Output format is invalid!')
             sys.exit(-1)
 
     def _cal_daylength(self):
@@ -238,7 +238,7 @@ class NREL_Preprocessor(Base_Preprocessor):
                 tmp[-1,:], ind_min, ind_max  = self._clean(tmp[-1,:])
 
                 if ind_min is None:
-                    print 'Void data!'
+                    print('Void data!')
                     sys.exit(-1)
                     continue
 
@@ -269,7 +269,7 @@ class NREL_Preprocessor(Base_Preprocessor):
         mask = ~np.isnan(raw)
         # indices of valid data
         valid_inds = np.array(\
-            [ ind for ind, val in np.ndenumerate(mask) if val]).flatten()
+            [ind for ind, val in np.ndenumerate(mask) if val]).flatten()
 
         # ind_min = int(valid_inds[0])
         # ind_max = ind(valid_inds[-1])

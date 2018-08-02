@@ -23,8 +23,8 @@ def preprocess_daytime_data(input_data, time_steps, val_size=0.2,
     # replace nan with a negative value!
     input_data[np.isnan(input_data)] = -1
 
-    print 'Range of possible cloud fraction is [ %.1f, %.1f ]' %\
-            (np.min(input_data), np.max(input_data))
+    print ('Range of possible cloud fraction is [ %.1f, %.1f ]' %\
+            (np.min(input_data), np.max(input_data)))
 
     # split input data set into training, validation and test set.
     data_train, data_val, data_test = split_data(input_data, val_size, test_size)
@@ -42,8 +42,8 @@ def split_data(input_data, val_size, test_size):
     logging.info('Split input data set ...')
 
     # debugging
-    print 'val_size is %.1f' % val_size
-    print 'test_size is %.1f' % test_size
+    print ('val_size is %.1f' % val_size)
+    print ('test_size is %.1f' % test_size)
 
     ndays = input_data.shape[0]
 
@@ -51,9 +51,9 @@ def split_data(input_data, val_size, test_size):
     itest = int(np.round(ndays * (1 - test_size)))
     ival = int(np.round(itest * (1 - val_size)))
 
-    print 'ndays is:', ndays
-    print 'itest is:', itest
-    print 'ival is:', ival
+    print ('ndays is:', ndays)
+    print ('itest is:', itest)
+    print ('ival is:', ival)
 
     data_train = input_data[:ival,:]
     data_val = input_data[ival:itest,:]
@@ -93,7 +93,7 @@ def rnn_daytime_data(data, time_steps, scale=1, labels=False):
         data_today = data[day, data[day,:] > 0]
         # data_today = 2 * data_today - 1
         if data_today.size == 0:
-            print 'void data!'
+            print ('void data!')
             continue
         for idx in range(0, len(data_today) - time_steps * scale, 1):
             if labels:
@@ -145,5 +145,5 @@ if __name__ == '__main__':
 
     data = np.reshape(raw_data['total_cloud_fraction'], (-1, 24))[0:50,:]
 
-    print 'whole day data block is:', data[0:3,:]
+    print ('whole day data block is:', data[0:3,:])
     preprocess_daytime_data(data, 5)

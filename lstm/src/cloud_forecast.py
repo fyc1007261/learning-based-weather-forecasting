@@ -141,6 +141,7 @@ class Cloud_Forecaster(Base_Forecaster):
 
         return np.sqrt(mse)
 
+
 class WRF_Irradiance_Forecaster(Cloud_Forecaster):
 
     def fit(self, datakey='irradiance_diff'):

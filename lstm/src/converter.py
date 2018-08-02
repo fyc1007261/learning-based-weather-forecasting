@@ -55,8 +55,8 @@ class Cloud_Cover_Converter(Base_Converter):
             daily_data = daily_data[~np.isnan(daily_data)]
 
             if daily_data.size == 0:
-                print indata[day,:]
-                print 'Error: void data!'
+                print(indata[day,:])
+                print('Error: void data!')
                 sys.exit(-1)
                 continue
 
@@ -86,7 +86,6 @@ class Cloud_Cover_Converter(Base_Converter):
 
 
 class WRF_Converter(Cloud_Cover_Converter):
-
     def _get_rnn_data(self, indata, labels=False):
 
         logging.info('Converting input data to rnn data...')
